@@ -23,11 +23,12 @@ target 'LaReserve' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  ###############################
-  # FIX GitHub Actions: inspections is nil
-  ###############################
+  # --------------------------------------------
+  # FIX GITHUB ACTIONS "undefined method `map' for nil:NilClass"
+  # This ensures inspections is always initialized
+  # before react_native_post_install or any pod script uses it.
+  # --------------------------------------------
   inspections = inspections || []
-  ###############################
 
   post_install do |installer|
     react_native_post_install(
