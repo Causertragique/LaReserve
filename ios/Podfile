@@ -5,8 +5,7 @@ require Pod::Executable.execute_command('node', ['-p',
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
-# Use RN-provided min_ios_version_supported when available, otherwise fallback
-platform :ios, (defined?(min_ios_version_supported) ? min_ios_version_supported : '13.0')
+platform :ios, min_ios_version_supported
 prepare_react_native_project!
 
 linkage = ENV['USE_FRAMEWORKS']
@@ -24,18 +23,12 @@ target 'LaReserve' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  # --------------------------------------------
-  # FIX GITHUB ACTIONS "undefined method `map' for nil:NilClass"
-  # Ensure `inspections` is defined and is an Array before any pod scripts use it.
-  # This avoids calling .map on nil inside generated podspecs or post-install hooks.
-  # --------------------------------------------
-  if !defined?(inspections) || inspections.nil?
-    inspections = []
-  end
-
-post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    # process inspections if needed, for example:
-    # (inspections || []).each { |i| puts i }
+  post_install do |installer|
+    react_native_post_install(
+      installer,
+      config[:reactNativePath],
+      :mac_catalyst_enabled => false
+      # :ccache_enabled => true
+    )
   end
 end
