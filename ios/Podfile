@@ -35,6 +35,7 @@ target 'LaReserve' do
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
-    (inspections || []).map { |i| ... }
+    # process inspections if needed, for example:
+    # (inspections || []).each { |i| puts i }
   end
 end
