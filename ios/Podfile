@@ -5,7 +5,8 @@ require Pod::Executable.execute_command('node', ['-p',
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
-platform :ios, min_ios_version_supported
+# Use RN-provided min_ios_version_supported when available, otherwise fallback
+platform :ios, (defined?(min_ios_version_supported) ? min_ios_version_supported : '13.0')
 prepare_react_native_project!
 
 linkage = ENV['USE_FRAMEWORKS']
@@ -25,17 +26,27 @@ target 'LaReserve' do
 
   # --------------------------------------------
   # FIX GITHUB ACTIONS "undefined method `map' for nil:NilClass"
-  # This ensures inspections is always initialized
-  # before react_native_post_install or any pod script uses it.
+  # Ensure `inspections` is defined and is an Array before any pod scripts use it.
+  # This avoids calling .map on nil inside generated podspecs or post-install hooks.
   # --------------------------------------------
-  inspections = inspections || []
+  if !defined?(inspections) || inspections.nil?
+    inspections = []
+  end
 
   post_install do |installer|
     react_native_post_install(
       installer,
       config[:reactNativePath],
-      :mac_catalyst_enabled => false,
+      :mac_catalyst_enabled => false
       # :ccache_enabled => true
     )
+
+    # Optional: common tweaks for CI / Apple Silicon issues.
+    # Uncomment if you need to exclude arm64 for simulator builds on some CI runners:
+    # installer.pods_project.targets.each do |target|
+    #   target.build_configurations.each do |config|
+    #     config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+    #   end
+    # end
   end
 end
