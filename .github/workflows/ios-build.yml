@@ -1,0 +1,52 @@
+name: iOS Build & Upload
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Install CocoaPods
+        run: |
+          sudo gem install cocoapods
+          cd ios
+          pod install
+          cd ..
+
+      - name: Build iOS Archive
+        run: |
+          cd ios
+          xcodebuild -workspace LaReserve.xcworkspace \
+            -scheme LaReserve \
+            -configuration Release \
+            -archivePath ../LaReserve.xcarchive \
+            archive
+
+      - name: Export IPA
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath LaReserve.xcarchive \
+            -exportPath build \
+            -exportOptionsPlist ios/exportOptions.plist
+
+      - name: Upload to App Store Connect
+        uses: apple-actions/upload-testflight-build@v1
+        with:
+          app-path: build/LaReserve.ipa
+          issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          api-private-key: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
