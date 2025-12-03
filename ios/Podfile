@@ -33,20 +33,8 @@ target 'LaReserve' do
     inspections = []
   end
 
-  post_install do |installer|
-    react_native_post_install(
-      installer,
-      config[:reactNativePath],
-      :mac_catalyst_enabled => false
-      # :ccache_enabled => true
-    )
-
-    # Optional: common tweaks for CI / Apple Silicon issues.
-    # Uncomment if you need to exclude arm64 for simulator builds on some CI runners:
-    # installer.pods_project.targets.each do |target|
-    #   target.build_configurations.each do |config|
-    #     config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
-    #   end
-    # end
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    (inspections || []).map { |i| ... }
   end
 end
