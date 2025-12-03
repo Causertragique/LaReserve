@@ -251,58 +251,63 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		13B07F941A680F5B00A75B9A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-LaReserve.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = LaReserve/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = LaReserve;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Debug;
-		};
-		13B07F951A680F5B00A75B9A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-LaReserve.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = LaReserve/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = LaReserve;
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
+    13B07F941A680F5B00A75B9A /* Debug */ = {
+    isa = XCBuildConfiguration;
+    baseConfigurationReference = 29F6AE3119E232F96456B46A /* Pods-LaReserve.debug.xcconfig */;
+    buildSettings = {
+        CODE_SIGN_STYLE = Automatic;
+        DEVELOPMENT_TEAM = 4F64DGV9XH;
+        ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+        CLANG_ENABLE_MODULES = YES;
+        CURRENT_PROJECT_VERSION = 1;
+        INFOPLIST_FILE = LaReserve/Info.plist;
+        IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+        LD_RUNPATH_SEARCH_PATHS = (
+            "$(inherited)",
+            "@executable_path/Frameworks",
+        );
+        MARKETING_VERSION = 1.0;
+        OTHER_LDFLAGS = (
+            "$(inherited)",
+            "-ObjC",
+            "-lc++",
+        );
+        PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+        PRODUCT_NAME = LaReserve;
+        SWIFT_VERSION = 5.0;
+        VERSIONING_SYSTEM = "apple-generic";
+    };
+    name = Debug;
+};
+	
+	13B07F951A680F5B00A75B9A /* Release */ = {
+    isa = XCBuildConfiguration;
+    baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-LaReserve.release.xcconfig */;
+    buildSettings = {
+        CODE_SIGN_STYLE = Automatic;
+        DEVELOPMENT_TEAM = 4F64DGV9XH;
+        ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+        CLANG_ENABLE_MODULES = YES;
+        CURRENT_PROJECT_VERSION = 1;
+        INFOPLIST_FILE = LaReserve/Info.plist;
+        IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+        LD_RUNPATH_SEARCH_PATHS = (
+            "$(inherited)",
+            "@executable_path/Frameworks",
+        );
+        MARKETING_VERSION = 1.0;
+        OTHER_LDFLAGS = (
+            "$(inherited)",
+            "-ObjC",
+            "-lc++",
+        );
+        PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+        PRODUCT_NAME = LaReserve;
+        SWIFT_VERSION = 5.0;
+        VERSIONING_SYSTEM = "apple-generic";
+    };
+};
+
 			name = Release;
 		};
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
